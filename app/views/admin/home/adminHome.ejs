@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/admin/style.css">
+    <title>Home-Admin</title>
+</head>
+
+
+<body>
+    <div class="contentMain">
+        <div class="boxLogin">
+            <h1>Enter</h1>
+            <form action="/admin/home/login" method="POST">
+                <label>Enrollment</label>
+                <input type="name"  name="matricula" id="matricula" placeholder="Enrollment">
+                <label>Password</laebl>
+                <input type="password" name="senha" id="senha" placeholder="Password">
+                <div class="buttons">
+                    <button type="submit" class="button">Send</button>
+                    <button class="button">Register</button>
+                </div>
+            </form>
+            <% if(validacao.length != null){ %>
+               <% for(var i = 0; i < validacao.length; i++){ %>
+                    <ul>
+                        <li><%= validacao[i].msg %></li>
+                        <br>
+                    </ul>
+                <% } %>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.contentMain{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.boxLogin{
+    border: 2px solid black;
+    
+    width: 50rem;
+}
+h1{
+    background-color: black;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+.boxLogin form{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 5rem;
+}
+.boxLogin input{
+    height: 2rem;
+}
+.buttons{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+    align-items: center;
+}
+.buttons button{
+    padding: 0.5rem;
+    width: 10rem;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
