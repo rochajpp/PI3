@@ -10,7 +10,7 @@ const connection = mysql.createConnection({
 if(connection.connect((err) => {
     if(err){
         console.log("Erro ao conectar ao banco de dados: " + err.stack);
-        return
+        return;
     }
 
     console.log("Conexão bem sucedida ao banco de dados com ID: " + connection.threadId);

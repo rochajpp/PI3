@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,16 +11,16 @@
 
 <body>
     <div class="contentMain">
-        <div class="boxLogin">
+        <div class="box">
             <h1>Enter</h1>
             <form action="/admin/home/login" method="POST">
                 <label>Enrollment</label>
                 <input type="name"  name="matricula" id="matricula" placeholder="Enrollment">
-                <label>Password</laebl>
+                <label>Password</label>
                 <input type="password" name="senha" id="senha" placeholder="Password">
                 <div class="buttons">
                     <button type="submit" class="button">Send</button>
-                    <button class="button">Register</button>
+                    <a href="/register"><button type="button" class="button">Register</button></a>
                 </div>
             </form>
             <% if(validacao.length != null){ %>

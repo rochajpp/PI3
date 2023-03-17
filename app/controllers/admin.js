@@ -6,8 +6,9 @@ module.exports.login = (app, req, res) => {
     const aluno = req.body;
     console.log(aluno);
 
-    req.assert('matricula', 'Digite a matrícula').notEmpty();
-    req.assert('senha', 'Digite a senha').notEmpty();
+    req.assert('matricula', 'Enter the Enrollment').notEmpty();
+    req.assert('senha', 'Enter the password').notEmpty();
+    req.assert('senha', 'Enter the password correctly. Ex: 25072003').len(8, 9);
 
     const error = req.validationErrors();
 
@@ -21,12 +22,74 @@ module.exports.login = (app, req, res) => {
     const model = new app.app.models.AlunosDAO(connection);
 
     model.validarInfo(aluno, (error, result) => {
-        if(result == false){
-            
-            res.send('Usuário não encontrado');
+        if(result == false){      
+            res.send('User not found');
             return;
         }
-        res.send(result);
+        const nascimento = result[0].data_nascimento;
+        const data = new Date(nascimento);
+
+        let day;
+
+        if(data.getDate() < 10){
+            day = "0" + data.getDate();
+        }else{
+            day = data.getDate().toString();
+        }
+
+        let month;
+
+        if(data.getMonth() < 10){
+            month = "0" + (data.getMonth() + 1);
+        }else{
+            month = (data.getMonth() + 1).toString();
+        }
+
+        const stringData = day + month  + data.getFullYear().toString();
+        
+        let senha = aluno.senha;
+
+        if(senha == stringData){
+            //Area for redirecting for student page
+            //Password validated
+            res.render('admin/login/loginHome', {aluno: result});
+            return;
+        }else{
+            res.send('Incorrect password');
+            console.log("Senha incorreta");
+        }
     });
 
 };
+
+module.exports.register = (app, req, res) => {
+    res.render('admin/register/register');
+};
+
+module.exports.saveStudent = (app, req, res) => {
+    const novoAluno = req.body;
+    const connection = require('../../config/dbConnection');
+    const model = new app.app.models.AlunosDAO(connection);
+
+    novoAluno.matricula = model.gerarMatricula((error, result) => {
+        let matricula;
+        let cont;
+        while(true){
+            cont = 0
+            matricula = Math.floor(Math.random() * 100000000);
+
+            for(var i = 0; i < result.length; i++){
+                if(matricula == result[i].matricula){
+                    return;
+                }
+                cont++;
+            }
+            if(cont == result.length){
+                
+                return matricula;
+            }
+        }
+    });
+
+    console.log(teste);
+}
