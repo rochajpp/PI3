@@ -6,13 +6,32 @@ AlunosDAO.prototype.validarInfo = function(aluno, callback){
     this._connection.query('SELECT * FROM alunos WHERE matricula = ' + aluno.matricula, callback);
 };
 
-AlunosDAO.prototype.gerarMatricula = function (callback){
-    this._connection.query('SELECT * FROM alunos', callback)
+AlunosDAO.prototype.validarEmail = function(aluno, callback){
+    this._connection.query("SELECT * FROM alunos WHERE email = '" + aluno.email + "'", callback);
 }
 
-AlunosDAO.prototype.salvarAluno = function(aluno, callback){
-    
-    this._connection.query('INSERT INTO alunos SET ?', aluno, callback);
+AlunosDAO.prototype.salvarAluno = function (aluno, callback){
+    this._connection.query('SELECT * FROM alunos', (error, result) => {
+        let matricula;
+        let cont;
+        while(true){
+            cont = 0
+            matricula = Math.floor(Math.random() * 100000000);
+
+            for(var i = 0; i < result.length; i++){
+                if(matricula == result[i].matricula){
+                    return;
+                }
+                cont++;
+            }
+            if(cont == result.length){
+                aluno.matricula = matricula;
+                this._connection.query('INSERT INTO alunos SET ?', aluno, callback);
+                return;
+            }
+        }
+        
+    });
 }
 
 module.exports = () => {

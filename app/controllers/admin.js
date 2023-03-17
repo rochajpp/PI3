@@ -68,28 +68,23 @@ module.exports.register = (app, req, res) => {
 
 module.exports.saveStudent = (app, req, res) => {
     const novoAluno = req.body;
+
+
+ 
     const connection = require('../../config/dbConnection');
     const model = new app.app.models.AlunosDAO(connection);
 
-    novoAluno.matricula = model.gerarMatricula((error, result) => {
-        let matricula;
-        let cont;
-        while(true){
-            cont = 0
-            matricula = Math.floor(Math.random() * 100000000);
-
-            for(var i = 0; i < result.length; i++){
-                if(matricula == result[i].matricula){
-                    return;
-                }
-                cont++;
-            }
-            if(cont == result.length){
-                
-                return matricula;
-            }
+    model.validarEmail(novoAluno, (error, result) => {
+        if(result.length > 0){
+            console.log('Email já cadastrado');
+        }else{
+            model.salvarAluno(novoAluno, (error, result) => {
+                console.log('Usuário registrado com sucesso');
+                res.render('admin/register/finalRegister', {matricula: novoAluno.matricula});
+            });
         }
     });
 
-    console.log(teste);
+    
+
 }
