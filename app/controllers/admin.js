@@ -52,8 +52,11 @@ module.exports.login = (app, req, res) => {
         if(senha == stringData){
             //Area for redirecting for student page
             //Password validated
-            res.render('admin/login/loginHome', {aluno: result});
-            return;
+            app.get('/admin/studentPage', (req, res) => {
+                res.render('admin/studentPage/studentPage', {aluno: result});
+            });
+            res.redirect('/admin/studentPage');
+            console.log("Student validated");
         }else{
             res.send('Incorrect password');
             console.log("Senha incorreta");
