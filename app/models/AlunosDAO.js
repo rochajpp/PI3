@@ -34,6 +34,10 @@ AlunosDAO.prototype.salvarAluno = function (aluno, callback){
     });
 }
 
+AlunosDAO.prototype.obterAluno = function(matricula, callback){
+    this._connection.query('SELECT * FROM alunos WHERE matricula= ' + matricula, callback);
+}
+
 module.exports = () => {
     return AlunosDAO;
 }

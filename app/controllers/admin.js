@@ -1,8 +1,10 @@
 module.exports.home = (app, req, res) => {
+    
     res.render('admin/home/adminHome', {validacao: {}});
 };
 
 module.exports.login = (app, req, res) => {
+    app.disable('/admin/studentPage');
     const aluno = req.body;
     console.log(aluno);
 
@@ -50,12 +52,7 @@ module.exports.login = (app, req, res) => {
         let senha = aluno.senha;
 
         if(senha == stringData){
-            //Area for redirecting for student page
-            //Password validated
-            app.get('/admin/studentPage', (req, res) => {
-                res.render('admin/studentPage/studentPage', {aluno: result});
-            });
-            res.redirect('/admin/studentPage');
+            res.redirect('/admin/studentPage?matricula=' + encodeURIComponent(JSON.stringify(result[0].matricula)));
             console.log("Student validated");
         }else{
             res.send('Incorrect password');
