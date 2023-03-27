@@ -1,8 +1,9 @@
 module.exports.homePage = (app, req, res) => {
 
     const params = req.query;
-    if(params.length == undefined){
-        res.send("No user found")
+    
+    if(params.matricula == undefined){
+        res.send("No user found");
     }else{
         const matricula = params.matricula;
 
