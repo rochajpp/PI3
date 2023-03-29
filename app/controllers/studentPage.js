@@ -4,6 +4,8 @@ module.exports.homePage = (app, req, res) => {
 
     const connection = require('../../config/dbConnection');
     const model = new app.app.models.AlunosDAO(connection);
+
+  
     
     model.validarSenha(params.matricula, (error, result) => {
         const nascimento = result[0].data_nascimento;
