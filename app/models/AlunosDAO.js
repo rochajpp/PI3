@@ -9,7 +9,9 @@ AlunosDAO.prototype.validarInfo = function(aluno, callback){
 AlunosDAO.prototype.validarEmail = function(aluno, callback){
     this._connection.query("SELECT * FROM alunos WHERE email = '" + aluno.email + "'", callback);
 }
-
+AlunosDAO.prototype.validarSenha = function(matricula, callback){
+    this._connection.query("SELECT data_nascimento FROM alunos WHERE matricula =" + matricula, callback);
+}
 AlunosDAO.prototype.salvarAluno = function (aluno, callback){
     this._connection.query('SELECT * FROM alunos', (error, result) => {
         let matricula;
