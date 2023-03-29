@@ -1,3 +1,7 @@
-const key = "98df7s9f0rjs0a9f8sdfdkfsd-9u0dfj809s8fdd";
+const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@$%*";
+let key = "";
+for(var i = 0; i < 22; i++){
+    key = key + chars.charAt(Math.floor(Math.random() * chars.length));
+}
 
 module.exports = key;
