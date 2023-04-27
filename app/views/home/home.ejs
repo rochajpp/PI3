@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Login</title>
+        <link rel="stylesheet" href="/home/style.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    </head>
+    <body>
+        <div class="login-container">
+            <h1>Login</h1>
+            <form action="/login" method="post">
+                <label for="username">Usuário:</label>
+                <input type="text" id="username" name="matricula"/>
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="senha"/>
+                <button style="cursor: pointer;" type="submit">Entrar</button>
+            </form>
+            <p>Não tem uma conta? <a href="register">Crie uma aqui.</a></p>
+            <div class="social-buttons">
+                <a href="https://www.facebook.com/" target="_blank">
+                    <button class="facebook"><i class="fab fa-facebook-f"></i></button>
+                </a>
+                <a href="https://www.linkedin.com/" target="_blank">
+                    <button class="linkedin"><i class="fab fa-linkedin-in"></i></button>
+                </a>
+                <a href="https://www.google.com/" target="_blank">
+                    <button class="google"><i class="fab fa-google"></i></button>
+                </a>
+            </div>
+            <% if(validacao.length != null){%>
+                <ul>
+                    <%for(var i = 0; i < validacao.length; i++){%>
+                        <li><%= validacao[i].msg %></li>
+                    <%}%>
+                </ul>
+            <%}%>
+        </div>
+    </body>
+</html>

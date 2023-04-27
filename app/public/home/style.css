@@ -1,0 +1,98 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+    font-family: sans-serif;
+  }
+  
+  .login-container {
+    width: 400px;
+    margin: 100px auto;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    transition: 0.5s;
+  }
+
+  form button:hover{
+    background-color: #6aae6c;
+  }
+  
+  .social-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 2rem;
+  }
+  
+  .social-buttons a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 1.5rem;
+  }
+  
+  .social-buttons a button{
+    cursor: pointer;
+  }
+  
+  .social-buttons .facebook {
+    background-color: #3b5998;
+  }
+  
+  .social-buttons .linkedin {
+    background-color: #0077b5;
+  }
+  
+  .social-buttons .google {
+    background-color: #db4437;
+  }
+  
+  .social-buttons a:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
+
+  ul{
+    background-color: rgba(255, 9, 9, 0.457);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid rgb(142, 0, 0);
+  }
