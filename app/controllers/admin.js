@@ -63,10 +63,6 @@ module.exports.login = (app, req, res) => {
 
 };
 
-module.exports.register = (app, req, res) => {
-    res.render('admin/register/register');
-};
-
 module.exports.saveStudent = (app, req, res) => {
     const novoAluno = req.body;
 

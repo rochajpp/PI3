@@ -22,6 +22,7 @@ AlunosDAO.prototype.salvarAluno = function (aluno, callback){
 
             for(var i = 0; i < result.length; i++){
                 if(matricula == result[i].matricula){
+                    console.log("Matrícula já existente!");
                     return;
                 }
                 cont++;
