@@ -23,7 +23,7 @@ module.exports.login = (app, req, res) => {
 
     model.validarInfo(aluno, (error, result) => {
         if(result == false){      
-            res.send('User not found');
+            res.render("errors/userNotFound");
             return;
         }
         const nascimento = result[0].data_nascimento;
