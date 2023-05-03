@@ -1,5 +1,5 @@
 module.exports.home = (app, req, res) => {
-    res.render("home/home", {validacao: {}});
+    res.render("home/home", {validacao: {}, incorrectPassword: false});
 }
 
 module.exports.login = (app, req, res) => {
@@ -14,7 +14,7 @@ module.exports.login = (app, req, res) => {
 
     if(error){
         console.log(error);
-        res.render('home/home', {validacao: error});
+        res.render('home/home', {validacao: error, incorrectPassword: false});
         return;
     }
 
@@ -54,8 +54,9 @@ module.exports.login = (app, req, res) => {
             res.redirect('/admin/studentPage?key=' + key + '&matricula=' + result[0].matricula + '&password=' + (stringData * 24244142));
             console.log("Student validated");
         }else{
-            res.send('Incorrect password');
+            res.render("home/home", {validacao: {}, incorrectPassword: true});
             console.log("Senha incorreta");
+        
         }
     });
 
