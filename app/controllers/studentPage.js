@@ -40,7 +40,7 @@ module.exports.homePage = (app, req, res) => {
                     const model = new app.app.models.AlunosDAO(connection);
 
                     model.obterAluno(matricula, (error, result) => {
-                        res.render('admin/studentPage/studentPage', {aluno: result});
+                        res.render('studentPage/studentPage', {aluno: result});
                     });
                 }
             } else{
