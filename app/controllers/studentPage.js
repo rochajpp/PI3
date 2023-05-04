@@ -40,7 +40,12 @@ module.exports.homePage = (app, req, res) => {
                     const model = new app.app.models.AlunosDAO(connection);
 
                     model.obterAluno(matricula, (error, result) => {
-                        res.render('studentPage/studentPage', {aluno: result});
+                        const alunoInfo = result;
+                        model.receberDisciplinas(matricula, (error, result) => {
+                            res.render('studentPage/studentPage', {aluno: alunoInfo, disciplinas: result});
+                        });          
+                    
+                        
                     });
                 }
             } else{
@@ -50,11 +55,9 @@ module.exports.homePage = (app, req, res) => {
             res.send("Error validation");
         }
     });
-
-   
-
-
-
-  
     
-}
+};
+
+module.exports.addSubject = (app, req, res) => {
+    res.render("studentPage/addSubject");  
+};

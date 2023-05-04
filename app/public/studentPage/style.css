@@ -53,3 +53,18 @@ table {
   tr:hover {
     background-color: #e0e0e0;
   }
+
+  .add{
+    text-decoration: none;
+    cursor: pointer; 
+    background-color: #005fa3;  
+    display: flex; 
+    justify-content: center; 
+    width: 97.5vw; 
+    font-size: 1.5rem; 
+    color: white;
+    transition: 0.5s;
+  }
+  .add:hover{
+    background-color: #206ba1;
+  }

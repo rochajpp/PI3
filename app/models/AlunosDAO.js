@@ -6,6 +6,10 @@ AlunosDAO.prototype.validarInfo = function(aluno, callback){
     this._connection.query('SELECT * FROM alunos WHERE matricula = ' + aluno.matricula, callback);
 };
 
+AlunosDAO.prototype.receberDisciplinas = function(matricula, callback){
+    this._connection.query('SELECT * FROM disciplinas WHERE idAluno = ' + matricula, callback);
+}
+
 AlunosDAO.prototype.validarEmail = function(aluno, callback){
     this._connection.query("SELECT * FROM alunos WHERE email = '" + aluno.email + "'", callback);
 }

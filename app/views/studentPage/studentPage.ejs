@@ -21,13 +21,22 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-    
-          <td>001</td>
-          <td>Matemática</td>
-          <td>João da Silva</td>
-        </tr>
+        <% if(disciplinas.length != null){ %>
+            <% for(var i = 0; i < disciplinas.length; i++){ %>
+              <a style="cursor: pointer;" href="/">
+                <tr>
+                  <td>00<%= i+1 %></td> 
+                  <td><%= disciplinas[i].nome %></td>     
+                  <td><%= disciplinas[i].professor %></td>          
+                </tr>
+              </a>
+            <%}%>
+        <%}%>
+        
+        
       </tbody>
+      
     </table>
+    <a class="add" href="addSubject">+</a>
 </body>
 </html>

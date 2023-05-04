@@ -50,6 +50,7 @@ module.exports.login = (app, req, res) => {
         let senha = aluno.senha;
 
         if(senha == stringData){
+            
             const key = require('../../key');
             res.redirect('/studentPage?key=' + key + '&matricula=' + result[0].matricula + '&password=' + (stringData * 24244142));
             console.log("Student validated");
