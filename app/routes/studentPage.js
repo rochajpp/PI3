@@ -8,6 +8,6 @@ module.exports = (app) => {
     });
 
     app.post("/studentPage/saveSubject", (req, res) => {
-
+        app.app.controllers.studentPage.saveSubject(app, req, res);
     });
 }

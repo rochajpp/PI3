@@ -12,12 +12,13 @@
         
         <form action="/studentPage/saveSubject" method="POST">
             <h1>Adicionar Disciplina</h1>
+            <input style="display: none" id="idAluno" name="idAluno" value="<%= matricula %>" >
             <label>Nome</label>
-            <input type="text" id="nome" name="nome">
+            <input type="text" id="nome" name="nome" required>
             <label>Professor</label>
-            <input type="text" id="professor" name="professor">
+            <input type="text" id="professor" name="professor" required>
             <label>Quantidade de notas</label>
-            <input type="number" id="quantNotas" name="quantNotas">
+            <input type="number" id="quantNotas" name="quantNotas" required>
             <button type="submit">Cadastrar</button>
         </form>
     </div>

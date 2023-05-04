@@ -31,10 +31,20 @@ form{
 input{
     padding: 10px;
     border: 1px solid #ccc;
+    border-radius: 0.4rem;
 }
 
 button{
     padding: 1rem 5rem;
+    background-color: #4caf50;
+    border: none;
+    border-radius: 0.4rem;
+    transition: 0.5s;
+    color: white;
 }
 
+button:hover{
+    cursor: pointer;
+    background-color: #6aae6c
+}
 

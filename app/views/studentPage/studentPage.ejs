@@ -25,7 +25,7 @@
             <% for(var i = 0; i < disciplinas.length; i++){ %>
               <a style="cursor: pointer;" href="/">
                 <tr>
-                  <td>00<%= i+1 %></td> 
+                  <td>00<%= disciplinas[i].id %></td> 
                   <td><%= disciplinas[i].nome %></td>     
                   <td><%= disciplinas[i].professor %></td>          
                 </tr>
@@ -37,6 +37,6 @@
       </tbody>
       
     </table>
-    <a class="add" href="addSubject">+</a>
+    <a class="add" href="addSubject?matricula= <%= aluno[0].matricula %>" >+</a>
 </body>
 </html>

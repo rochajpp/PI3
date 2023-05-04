@@ -45,6 +45,10 @@ AlunosDAO.prototype.obterAluno = function(matricula, callback){
     this._connection.query('SELECT * FROM alunos WHERE matricula= ' + matricula, callback);
 }
 
+AlunosDAO.prototype.salvarDisciplina = function(disciplina, callback){
+    this._connection.query('INSERT INTO disciplinas SET ?', disciplina, callback);
+}
+
 module.exports = () => {
     return AlunosDAO;
 }
