@@ -18,6 +18,7 @@
           <th>Código</th>
           <th>Disciplina</th>
           <th>Professor(a)</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -25,9 +26,13 @@
             <% for(var i = 0; i < disciplinas.length; i++){ %>
               <a style="cursor: pointer;" href="/">
                 <tr>
-                  <td>00<%= disciplinas[i].id %></td> 
+                  <td>0<%= i + 1 %></td> 
                   <td><%= disciplinas[i].nome %></td>     
-                  <td><%= disciplinas[i].professor %></td>          
+                  <td><%= disciplinas[i].professor %></td>        
+                  <td class="buttons">
+                    <a href=""><button>Alterar</button></a>
+                    <a href=""><button>Deletar</button></a>
+                  </td>  
                 </tr>
               </a>
             <%}%>

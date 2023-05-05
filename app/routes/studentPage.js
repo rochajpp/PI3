@@ -4,10 +4,10 @@ module.exports = (app) => {
     });
 
     app.get("/studentPage/addSubject", (req, res) => {
-        app.app.controllers.studentPage.addSubject(app, req, res);
+        app.app.controllers.subject.addSubject(app, req, res);
     });
 
     app.post("/studentPage/saveSubject", (req, res) => {
-        app.app.controllers.studentPage.saveSubject(app, req, res);
+        app.app.controllers.subject.saveSubject(app, req, res);
     });
 }

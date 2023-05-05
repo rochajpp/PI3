@@ -60,11 +60,31 @@ table {
     background-color: #4caf50;  
     display: flex; 
     justify-content: center; 
-    width: 97.5vw; 
+    width: 99vw; 
     font-size: 1.5rem; 
     color: white;
     transition: 0.5s;
   }
   .add:hover{
     background-color: #206ba1;
+  }
+
+  button{
+    padding: 0.5rem 2rem;
+    border: none;
+    border-radius: 0.2rem;
+    background-color: #4caf50;
+    color: white;
+    transition: 0.5s;
+  }
+
+  button:hover{
+    cursor: pointer;
+    background-color: #206ba1;
+  }
+
+  .buttons{
+    display: flex;
+    gap: 2rem;
+    width: 5rem;
   }
