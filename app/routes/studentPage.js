@@ -10,4 +10,7 @@ module.exports = (app) => {
     app.post("/studentPage/saveSubject", (req, res) => {
         app.app.controllers.subject.saveSubject(app, req, res);
     });
+    app.get("/studentPage/subject", (req, res) => {
+        app.app.controllers.subject.subject(app, req, res);
+    });
 }

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/subject/styleInfo.css">
+    <title><%=disciplina[0].nome%> - <%=aluno[0].matricula%></title>
+</head>
+<body>
+    <header>
+      <h1><strong>Informações da Disciplina</strong></h1>
+    </header>
+    <section>
+        <h2><%= disciplina[0].nome %></h2>      
+          <p>Professor: <%= disciplina[0].professor %></p>
+          
+          <p>Sala: <%= disciplina[0].sala %></p>
+          
+          <p>Campus: <%= disciplina[0].localidade %></p>
+          
+          <h2>Atividades para Entregar:</h2>
+          <ul>
+            <% if(atividades.length != 0){%>
+              <%for(var i = 0; i < atividades.length; i++){%>
+                <li><%= atividades[i].nome %> (Prazo: <%= atividades[i].data %>)</li>
+              <%}%>
+            <%} else{%>
+              <p>Nenhuma atividade pendente!</p>
+            <%}%>
+          </ul>
+          <a href=""><button class="button">Nova Atividade</button></a>
+      </section>
+  
+      <section>
+        <h2>Suas notas</h2>
+        <table>
+          <tr>
+            <th>Disciplina</th>
+            <%for(var i = 0; i <= disciplina[0].quantNotas; i++){%>
+              <th><%= i + 1 %>ª Etapa</th>
+            <%}%>
+          </tr>
+          <tr>
+            <th><%= disciplina[0].nome %></th>
+            <%for(var i = 0; i <= disciplina[0].quantNotas; i++){%>
+              <th>
+                <% if(notas[i] != undefined){ %>
+                    <%= notas[i].nota %> (Peso: <%= notas[i].peso %>)
+                <%} else{%>
+                  <a href=""><button>+</button></a>
+                <%}%>
+              </th>
+            <%}%>
+          </tr>
+        </table>
+      </section>
+</body>
+</html>
