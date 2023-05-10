@@ -20,6 +20,7 @@ module.exports.login = (app, req, res) => {
 
     const connection = require('../../config/dbConnection');
     const model = new app.app.models.AlunosDAO(connection);
+    const cripto = require("../../cripto");
 
     model.validarInfo(aluno, (error, result) => {
         if(result == false){      
@@ -52,7 +53,7 @@ module.exports.login = (app, req, res) => {
         if(senha == stringData){
             
             const key = require('../../key');
-            res.redirect('/studentPage?key=' + key + '&matricula=' + result[0].matricula + '&password=' + (stringData * 24244142));
+            res.redirect('/studentPage?key=' + key + '&matricula=' + result[0].matricula + '&password=' + (stringData * cripto));
             console.log("Student validated");
         }else{
             res.render("home/home", {validacao: {}, incorrectPassword: true});

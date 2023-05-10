@@ -18,6 +18,7 @@ module.exports.saveSubject = (app, req, res) => {
 
             const nascimento = result[0].data_nascimento;
             const data = new Date(nascimento);
+            const cripto = require("../../cripto");
     
             let day;
     
@@ -38,7 +39,7 @@ module.exports.saveSubject = (app, req, res) => {
             const stringData = day + month  + data.getFullYear().toString();
     
             model.salvarDisciplina(newSubject, (error, result) => {
-                res.redirect('/studentPage?key=' + key + '&matricula=' + aluno.matricula + '&password=' + (stringData* 24244142));
+                res.redirect('/studentPage?key=' + key + '&matricula=' + aluno.matricula + '&password=' + (stringData* cripto));
     
             });
         }else{
@@ -91,4 +92,45 @@ module.exports.subject = (app, req, res) => {
         });
     });
     
+}
+
+module.exports.deletarDisciplina = (app, req, res) => {
+    const id = req.query.disciplina;
+    const aluno = req.query.aluno;
+    const key = require("../../key");
+    const cripto = require("../../cripto");
+
+    
+    const connection = require("../../config/dbConnection");
+    const model = new app.app.models.DisciplinasDAO(connection);
+    const modelAluno = new app.app.models.AlunosDAO(connection);
+
+    model.deletarDisciplina(id, (error, result) => {
+        modelAluno.validarSenha(aluno, (error, resultAluno) => {
+
+            const data= new Date(resultAluno[0].data_nascimento);
+
+            let day;
+
+            if(data.getDate() < 10){
+                day = "0" + data.getDate();
+            }else{
+                day = data.getDate().toString();
+            }
+    
+            let month;
+    
+            if(data.getMonth() < 10){
+                month = "0" + (data.getMonth() + 1);
+            }else{
+                month = (data.getMonth() + 1).toString();
+            }
+
+            const pass = day + month + data.getFullYear().toString();
+            
+            
+
+            res.redirect("/studentPage?key=" + key + "&matricula=" + aluno + "&password=" + pass * cripto);
+        })
+    });
 }

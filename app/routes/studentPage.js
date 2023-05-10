@@ -13,4 +13,8 @@ module.exports = (app) => {
     app.get("/studentPage/subject", (req, res) => {
         app.app.controllers.subject.subject(app, req, res);
     });
+
+    app.get("/studentPage/deletarDisciplina", (req, res) => {
+        app.app.controllers.subject.deletarDisciplina(app, req, res);
+    });
 }

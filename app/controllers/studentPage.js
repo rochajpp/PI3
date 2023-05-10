@@ -10,6 +10,7 @@ module.exports.homePage = (app, req, res) => {
     model.validarSenha(params.matricula, (error, result) => {
         const nascimento = result[0].data_nascimento;
         const data = new Date(nascimento);
+        const cripto = require("../../cripto");
 
         let day;
 
@@ -29,7 +30,7 @@ module.exports.homePage = (app, req, res) => {
 
         const stringData = day + month  + data.getFullYear().toString();
 
-        if(stringData == params.password / 24244142){   
+        if(stringData == params.password / cripto){   
             if(params.key == key){
                 if(params.matricula == undefined){
                     res.send("No user found");
