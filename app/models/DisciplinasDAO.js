@@ -11,7 +11,9 @@ DisciplinasDAO.prototype.obterDisciplina = function(id, callback){
 DisciplinasDAO.prototype.deletarDisciplina = function(id, callback){
     this._connection.query('DELETE FROM disciplinas WHERE id=' + id, callback);
 }
-
+DisciplinasDAO.prototype.alterarDisciplina = function(id, callback){
+    
+}
 module.exports = () => {
     return DisciplinasDAO;
 }

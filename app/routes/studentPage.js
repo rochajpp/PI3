@@ -17,4 +17,11 @@ module.exports = (app) => {
     app.get("/studentPage/deletarDisciplina", (req, res) => {
         app.app.controllers.subject.deletarDisciplina(app, req, res);
     });
+
+    app.get("/studentPage/alterarDisciplina", (req, res) => {
+        app.app.controllers.subject.alterarDisciplina(app, req, res);
+    });
+    app.post("/studentPage/alterarDisciplina/alterar", (req, res) => {
+        app.app.controllers.subject.alterar(app, res, res);
+    });
 }

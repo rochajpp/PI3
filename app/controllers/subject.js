@@ -134,3 +134,25 @@ module.exports.deletarDisciplina = (app, req, res) => {
         })
     });
 }
+
+module.exports.alterarDisciplina = (app, req, res) => {
+    const connection = require("../../config/dbConnection");
+    const model = new app.app.models.DisciplinasDAO(connection);
+    const id = req.query.disciplina;
+
+    model.obterDisciplina(id, (error, result) => {
+    
+        res.render("subject/formAlterar", {disciplina: result});
+    });
+    
+}
+
+module.exports.alterar = (app, req, res) => {
+    res.send(req.body);
+
+    const connection = require("../../config/dbConnection");
+    const model = new app.app.models.DisciplinasDAO(connection);
+    
+    
+
+}
