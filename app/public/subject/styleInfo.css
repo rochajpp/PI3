@@ -33,6 +33,20 @@ body {
     margin-bottom: 5px;
     padding: 0;
     margin-left: 2rem;
+    
+  }
+  li a{
+    position: absolute;
+    top: 19.5rem;
+    left: 24rem;
+  }
+
+  li a button{
+    background-color: white;
+    border: 1px solid black;
+  }
+  li a button:hover{
+    background-color:#4caf50;
   }
 
   table {
