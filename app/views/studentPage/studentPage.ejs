@@ -22,7 +22,7 @@
         </tr>
       </thead>
       <tbody>
-        <% if(disciplinas.length != null){ %>
+        <% if(disciplinas != null){ %>
             <% for(var i = 0; i < disciplinas.length; i++){ %>
                 <tr onclick="location.href='subject?disciplina=<%= disciplinas[i].id %>&aluno=<%= aluno[0].matricula %>'">
                   <td>0<%= i + 1 %></td> 
@@ -40,6 +40,6 @@
       </tbody>
       
     </table>
-    <a class="add" href="addSubject?matricula= <%= aluno[0].matricula %>" >+</a>
+    <a class="add" href="addSubject?matricula=<%= aluno[0].matricula %>" >+</a>
 </body>
 </html>
