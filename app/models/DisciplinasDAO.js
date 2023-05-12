@@ -9,6 +9,7 @@ DisciplinasDAO.prototype.obterDisciplina = function(id, callback){
     this._connection.query('SELECT * FROM disciplinas WHERE id=' + id, callback);
 }
 DisciplinasDAO.prototype.deletarDisciplina = function(id, callback){
+    console.log(id);
     this._connection.query('DELETE FROM disciplinas WHERE id=' + id, callback);
 }
 DisciplinasDAO.prototype.alterarDisciplina = function(id, callback){

@@ -104,34 +104,37 @@ module.exports.deletarDisciplina = (app, req, res) => {
     const connection = require("../../config/dbConnection");
     const model = new app.app.models.DisciplinasDAO(connection);
     const modelAluno = new app.app.models.AlunosDAO(connection);
+    const modelNota = new app.app.models.NotasDAO(connection);
 
-    model.deletarDisciplina(id, (error, result) => {
-        modelAluno.validarSenha(aluno, (error, resultAluno) => {
+    modelNota.deletarNota(id, (error, resultNota) => {
+        model.deletarDisciplina(id, (error, result) => {
+            modelAluno.validarSenha(aluno, (error, resultAluno) => {
 
-            const data= new Date(resultAluno[0].data_nascimento);
+                const data= new Date(resultAluno[0].data_nascimento);
 
-            let day;
+                let day;
 
-            if(data.getDate() < 10){
-                day = "0" + data.getDate();
-            }else{
-                day = data.getDate().toString();
-            }
-    
-            let month;
-    
-            if(data.getMonth() < 10){
-                month = "0" + (data.getMonth() + 1);
-            }else{
-                month = (data.getMonth() + 1).toString();
-            }
+                if(data.getDate() < 10){
+                    day = "0" + data.getDate();
+                }else{
+                    day = data.getDate().toString();
+                }
+        
+                let month;
+        
+                if(data.getMonth() < 10){
+                    month = "0" + (data.getMonth() + 1);
+                }else{
+                    month = (data.getMonth() + 1).toString();
+                }
 
-            const pass = day + month + data.getFullYear().toString();
-            
-            
+                const pass = day + month + data.getFullYear().toString();
+                
+                
 
-            res.redirect("/studentPage?key=" + key + "&matricula=" + aluno + "&password=" + pass * cripto);
-        })
+                res.redirect("/studentPage?key=" + key + "&matricula=" + aluno + "&password=" + pass * cripto);
+            })
+        });
     });
 }
 

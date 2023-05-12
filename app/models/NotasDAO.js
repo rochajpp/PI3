@@ -6,6 +6,10 @@ NotasDAO.prototype.obterNotas = function(id, callback){
     this._connection.query('SELECT * FROM notas WHERE idDisciplina=' + id, callback);
 }
 
+NotasDAO.prototype.deletarNota = function(id ,callback){
+    this._connection.query('DELETE FROM notas WHERE idDisciplina=' + id, callback);
+}
+
 module.exports = () => {
     return NotasDAO;
 }
