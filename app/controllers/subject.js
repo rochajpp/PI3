@@ -104,33 +104,59 @@ module.exports.deletarDisciplina = (app, req, res) => {
     const connection = require("../../config/dbConnection");
     const model = new app.app.models.DisciplinasDAO(connection);
     const modelAluno = new app.app.models.AlunosDAO(connection);
+    const modelNota = new app.app.models.NotasDAO(connection);
 
-    model.deletarDisciplina(id, (error, result) => {
-        modelAluno.validarSenha(aluno, (error, resultAluno) => {
+    modelNota.deletarNota(id, (error, resultNota) => {
+        model.deletarDisciplina(id, (error, result) => {
+            modelAluno.validarSenha(aluno, (error, resultAluno) => {
 
-            const data= new Date(resultAluno[0].data_nascimento);
+                const data= new Date(resultAluno[0].data_nascimento);
 
-            let day;
+                let day;
 
-            if(data.getDate() < 10){
-                day = "0" + data.getDate();
-            }else{
-                day = data.getDate().toString();
-            }
+                if(data.getDate() < 10){
+                    day = "0" + data.getDate();
+                }else{
+                    day = data.getDate().toString();
+                }
+        
+                let month;
+        
+                if(data.getMonth() < 10){
+                    month = "0" + (data.getMonth() + 1);
+                }else{
+                    month = (data.getMonth() + 1).toString();
+                }
+
+                const pass = day + month + data.getFullYear().toString();
+                
+                
+
+                res.redirect("/studentPage?key=" + key + "&matricula=" + aluno + "&password=" + pass * cripto);
+            })
+        });
+    });
+}
+
+module.exports.alterar = (app, req, res) => {
+    const disciplina = req. query.disciplina;
     
-            let month;
+    const connection = require("../../config/dbConnection");
+    const model = new app.app.models.DisciplinasDAO(connection);
+
+    model.obterDisciplina(disciplina, (error, result) => {
+        res.render("subject/alterarDisciplina", {disciplina: result[0]});
+    });
     
-            if(data.getMonth() < 10){
-                month = "0" + (data.getMonth() + 1);
-            }else{
-                month = (data.getMonth() + 1).toString();
-            }
+}
+module.exports.alterSave = (app, req, res) => {
+    
+    const disciplina = req.body;
 
-            const pass = day + month + data.getFullYear().toString();
-            
-            
+    const connection = require("../../config/dbConnection");
+    const model = new app.app.models.DisciplinasDAO(connection);
 
-            res.redirect("/studentPage?key=" + key + "&matricula=" + aluno + "&password=" + pass * cripto);
-        })
+    model.alterarDisciplina(disciplina, (error, result) => {
+        res.send(error);
     });
 }

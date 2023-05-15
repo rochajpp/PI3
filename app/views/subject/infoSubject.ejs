@@ -44,13 +44,15 @@
           <tr>
             <th><%= disciplina[0].nome %></th>
             <%for(var i = 0; i <= disciplina[0].quantNotas; i++){%>
-              <th>
-                <% if(notas[i] != undefined){ %>
-                    <%= notas[i].nota %> (Peso: <%= notas[i].peso %>)
+              <% if(notas[i] != undefined){ %>
+                <th style="background-color: #f2f2f2; color: black;" >
+                  <%= notas[i].nota %> (Peso: <%= notas[i].peso %>)
+                </th>
                 <%} else{%>
-                  <a href=""><button>+</button></a>
+                  <th>
+                    <a href=""><button>+</button></a>
+                  </th>
                 <%}%>
-              </th>
             <%}%>
           </tr>
         </table>

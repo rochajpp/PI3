@@ -12,6 +12,10 @@ DisciplinasDAO.prototype.deletarDisciplina = function(id, callback){
     this._connection.query('DELETE FROM disciplinas WHERE id=' + id, callback);
 }
 
+DisciplinasDAO.prototype.alterarDisciplina = function(disciplina, callback){
+    this._connection.query('UPDATE disciplinas SET nome="' + disciplina.nome + '", professor="' + disciplina.professor + '", quantNotas=' + disciplina.quantNotas + ', localidade="' + disciplina.localidade + '", sala="' + disciplina.sala + '" WHERE id=' + disciplina.id, callback );
+}
+
 module.exports = () => {
     return DisciplinasDAO;
 }
