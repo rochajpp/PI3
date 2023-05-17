@@ -43,7 +43,7 @@ module.exports.homePage = (app, req, res) => {
                     model.obterAluno(matricula, (error, result) => {
                         const alunoInfo = result;
                         model.receberDisciplinas(matricula, (error, result) => {
-                            res.render('studentPage/studentPage', {aluno: alunoInfo, disciplinas: result});
+                            res.render('studentPage/studentPage', {aluno: alunoInfo, disciplinas: result, pass: params.password});
                         });          
                     
                         

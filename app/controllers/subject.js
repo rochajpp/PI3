@@ -52,6 +52,8 @@ module.exports.subject = (app, req, res) => {
 
     const id = req.query.disciplina;
     const matricula = req.query.aluno;
+    const pass = req.query.password;
+    const key = require("../../key");
 
     const connection = require("../../config/dbConnection");
 
@@ -86,7 +88,7 @@ module.exports.subject = (app, req, res) => {
                    
                 }
                 modelNotas.obterNotas(id, (error, resultNotas) => {           
-                    res.render("subject/infoSubject", {disciplina: resultDisciplina, aluno: resultAluno, notas: resultNotas, atividades: resultAtividades});
+                    res.render("subject/infoSubject", {disciplina: resultDisciplina, aluno: resultAluno, notas: resultNotas, atividades: resultAtividades, pass: pass, key: key});
                 });
             });
         });

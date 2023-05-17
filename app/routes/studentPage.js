@@ -24,4 +24,8 @@ module.exports = (app) => {
     app.post("/alterarSave", (req, res) => {
         app.app.controllers.subject.alterSave(app, req, res);
     });
+
+    app.post("/addAtividade", (req, res) => {
+        app.app.controllers.atividade.addAtividade(app, req, res);
+    });
 }
