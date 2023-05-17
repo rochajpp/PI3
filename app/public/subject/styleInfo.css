@@ -99,3 +99,40 @@ body {
     background-color: #6aae6c;
     color: white;
   }
+  .activeBody .addAtividade{
+    display: block;
+  }
+  .addAtividade{
+    display: none;
+  }
+  .main{
+    transition: 0.5s;
+  }
+  .active{
+    filter: blur(10px);
+  }
+  
+  .addAtividade{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    transition: 0.5;  
+  }
+  form{
+    display: flex;
+    flex-direction: column;    
+    gap: 1rem;
+    box-shadow: 0 0 0.5rem  rgb(0, 0, 0, 0.3);
+    background-color: white;
+    border-radius: 0.2rem;
+    padding: 4rem 8rem;
+    border-radius: 1rem;
+}
+
+input{
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 0.4rem;
+}

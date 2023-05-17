@@ -8,6 +8,19 @@
     <title><%=disciplina[0].nome%> - <%=aluno[0].matricula%></title>
 </head>
 <body>
+    <div class="addAtividade">
+      
+      <form action="/addAtividade" method="POST">
+        <h1>Nova Atividade</h1>
+        <label>Nome</label>
+        <input type="text" id="data" name="data">
+        <label>Prazo</label>
+        <input type="date" id="data" name="data">
+        <button type="submit">Criar</button>
+        <button type="button" onclick="addPop()">Voltar</button>
+      </form>
+    </div>
+    <div class="main">
     <header>
       <h1><strong>Informações da Disciplina</strong></h1>
     </header>
@@ -29,7 +42,7 @@
               <p>Nenhuma atividade pendente!</p>
             <%}%>
           </ul>
-          <a href=""><button class="button">Nova Atividade</button></a>
+          <button onclick="addPop()" class="button">Nova Atividade</button>
       </section>
   
       <section>
@@ -57,5 +70,7 @@
           </tr>
         </table>
       </section>
+    </div>
+      <script src="/subject/scriptInfo.js"></script>
 </body>
 </html>
