@@ -141,24 +141,51 @@ module.exports.deletarDisciplina = (app, req, res) => {
 }
 
 module.exports.alterar = (app, req, res) => {
-    const disciplina = req. query.disciplina;
-    
+    const disciplina = req.query.disciplina;
+    const aluno = req.query.aluno;
+    const cripto = require("../../cripto");
     const connection = require("../../config/dbConnection");
     const model = new app.app.models.DisciplinasDAO(connection);
+    const modelAluno = new app.app.models.AlunosDAO(connection);
 
     model.obterDisciplina(disciplina, (error, result) => {
-        res.render("subject/alterarDisciplina", {disciplina: result[0]});
+        modelAluno.validarSenha(aluno, (error, resultAluno) => {
+            const data= new Date(resultAluno[0].data_nascimento);
+
+            let day;
+
+            if(data.getDate() < 10){
+                day = "0" + data.getDate();
+            }else{
+                day = data.getDate().toString();
+            }
+    
+            let month;
+    
+            if(data.getMonth() < 10){
+                month = "0" + (data.getMonth() + 1);
+            }else{
+                month = (data.getMonth() + 1).toString();
+            }
+
+            const pass = day + month + data.getFullYear().toString();
+
+            res.render("subject/alterarDisciplina", {disciplina: result[0], pass: pass * cripto, aluno: aluno});
+        })
+        
     });
     
 }
 module.exports.alterSave = (app, req, res) => {
     
     const disciplina = req.body;
+    const pass = req.query.pass;
+    const key = require("../../key");
 
     const connection = require("../../config/dbConnection");
     const model = new app.app.models.DisciplinasDAO(connection);
-
+   
     model.alterarDisciplina(disciplina, (error, result) => {
-        res.send(error);
+        res.redirect("/studentPage?key=" + key + "&matricula=" + req.query.aluno + "&password=" + pass);
     });
 }

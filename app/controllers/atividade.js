@@ -42,7 +42,7 @@ module.exports.rmAtividade = (app, req, res) => {
     const model = new app.app.models.AtividadesDAO(connection);
 
     model.removerAtividade(id, (error, result) => {
-        res.redirect("/studentPage/subject?disciplina=" + infos.disciplina + "&aluno=" + infos.aluno + "&password=" + infos.password);
+        res.redirect("/studentPage/subject?disciplina=" + infos.disciplina + "&aluno=" + infos.aluno + "&password=" + infos.pass);
     });
 
 }

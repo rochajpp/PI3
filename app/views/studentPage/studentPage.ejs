@@ -29,7 +29,7 @@
                   <td><%= disciplinas[i].nome %></td>     
                   <td><%= disciplinas[i].professor %></td>        
                   <td class="buttons">
-                    <a href="/alterarDisciplina?disciplina=<%= disciplinas[i].id %>"><button>Alterar</button></a>
+                    <a href="/alterarDisciplina?disciplina=<%= disciplinas[i].id %>&aluno=<%= aluno[0].matricula %>"><button>Alterar</button></a>
                     <a href="deletarDisciplina?disciplina=<%= disciplinas[i].id %>&aluno=<%= aluno[0].matricula %>"><button>Deletar</button></a>
                   </td>                 
                </tr>              
