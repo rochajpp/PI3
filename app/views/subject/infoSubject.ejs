@@ -10,12 +10,13 @@
 <body>
     <div class="addAtividade">
       
-      <form action="/addAtividade" method="POST">
+      <form action="/addAtividade?aluno=<%= aluno[0].matricula %>&password=<%= pass %>" method="POST">
         <h1>Nova Atividade</h1>
+        <input style="display: none;" id="idDisciplina" name="idDisciplina" value="<%= disciplina[0].id %>">
         <label>Nome</label>
-        <input type="text" id="data" name="data">
+        <input type="text" id="nome" name="nome" required>
         <label>Prazo</label>
-        <input type="date" id="data" name="data">
+        <input type="date" id="data" name="data" required>
         <button type="submit">Criar</button>
         <button type="button" onclick="addPop()">Voltar</button>
       </form>
@@ -37,7 +38,7 @@
           <ul>
             <% if(atividades.length != 0){%>
               <%for(var i = 0; i < atividades.length; i++){%>
-                <li><%= atividades[i].nome %> (Prazo: <%= atividades[i].data %>) <a href=""><button style="padding: 0.5rem"></button></a></li>
+                <li class="ativLi"><%= atividades[i].nome %> (Prazo: <%= atividades[i].data %>) <a href="/removerAtividade?idAtividade=<%= atividades[i].id %>&disciplina=<%= disciplina[0].id %>&aluno=<%= aluno[0].matricula %>&pass=<%= pass %>"><button style="padding: 0.5rem"></button></a></li>
               <%}%>
             <%} else{%>
               <p>Nenhuma atividade pendente!</p>

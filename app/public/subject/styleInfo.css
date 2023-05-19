@@ -36,16 +36,21 @@ body {
 
   ul li {
     margin-bottom: 5px;
-    padding: 0;
+    padding: 1rem 0;
     margin-left: 2rem;
+
+
     
   }
   li a{
-    position: absolute;
-    top: 19.5rem;
-    left: 24rem;
+  
+    position: relative;
+    left: 0.5rem;
+    bottom: 0.2rem;
   }
 
+
+ 
   li a button{
     background-color: white;
     border: 1px solid black;
@@ -122,8 +127,7 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    z-index: 1000;
-    transition: 0.5;  
+    z-index: 1000; 
   }
   form{
     display: flex;

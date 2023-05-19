@@ -28,4 +28,8 @@ module.exports = (app) => {
     app.post("/addAtividade", (req, res) => {
         app.app.controllers.atividade.addAtividade(app, req, res);
     });
+
+    app.get("/removerAtividade", (req, res) => {
+        app.app.controllers.atividade.rmAtividade(app, req, res);
+    });
 }
