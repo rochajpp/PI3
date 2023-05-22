@@ -10,3 +10,15 @@ module.exports.salvarNota = (app, req, res) => {
     });
 
 }
+
+module.exports.removerNota = (app, req, res) => {
+    const infos = req.query;
+    
+    
+    const connection = require("../../config/dbConnection");
+    const model = new app.app.models.NotasDAO(connection);
+
+    model.apagarNota(infos.id, (error, result) => {
+        res.redirect("/studentPage/subject?disciplina=" + infos.disciplina + "&aluno=" + infos.aluno + "&password=" + infos.pass);
+    })
+}

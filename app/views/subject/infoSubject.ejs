@@ -75,12 +75,12 @@
               <% if(notas[i] != undefined){ %>
                 <th style="background-color: #f2f2f2; color: black;" >
                   <%= notas[i].nota %> (Peso: <%= notas[i].peso %>)
-                  <a style="text-decoration: none; color: red; margin-left: 1rem" href="">X</a>
+                  <a style="text-decoration: none; color: red; margin-left: 1rem" href="/removerNota?id= <%=notas[i].id %>&disciplina=<%= disciplina[0].id %>&aluno=<%= aluno[0].matricula %>&pass=<%= pass %>">X</a>
                 </th>
                 
                 <%} else{%>
                   <th>
-                    <% if(notaFut != 0){ %>
+                    <% if(notaFut > 0){ %>
                       <a onclick="addPopNota()"><button>+ (Nota mínima: <%= notaFut %>)</button></a>
                     <% }else{ %>
                       <a onclick="addPopNota()"><button>+</button></a>
@@ -89,11 +89,15 @@
                 <%}%>
                 
             <%}%>
-            <% if(media != 0) { %>
-              <% if(media >= 7.0){ %>
-                <h1>Aprovado com média <%= media %></h1>
-              <% }else{ %>
-                <h1>Reprovado com média <%= media %></h1>
+            <% if(media != 0 || notaFut > 10) { %>
+              <% if(notaFut > 10){ %>
+                <h1>Reprovado</h1>
+              <% } else{%>  
+                <% if(media >= 7.0){ %>
+                  <h1>Aprovado com média <%= media %></h1>
+                <% }else{ %>
+                  <h1>Reprovado com média <%= media %></h1>
+                <% } %>
               <% } %>
             <% } %>
           </tr>

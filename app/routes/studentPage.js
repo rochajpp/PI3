@@ -36,4 +36,8 @@ module.exports = (app) => {
     app.post("/salvarNota", (req, res) => {
         app.app.controllers.nota.salvarNota(app, req, res);
     })
+
+    app.get("/removerNota", (req, res) => {
+        app.app.controllers.nota.removerNota(app, req ,res);
+    });
 }
