@@ -61,39 +61,72 @@ module.exports.subject = (app, req, res) => {
     const modelAluno =  new app.app.models.AlunosDAO(connection);
     const modelAtividades = new app.app.models.AtividadesDAO(connection);
     const modelNotas = new app.app.models.NotasDAO(connection);
+    modelNotas.obterNotas(id, (error, resultNotas) => {    
+        modelDisciplina.obterDisciplina(id, (error, resultDisciplina) => {
+            modelAluno.obterAluno(matricula, (error, resultAluno) => {
+                modelAtividades.obterAtividades(id, (error, resultAtividades) => {
+                    for(var i = 0; i < resultAtividades.length; i++){
+                        const data= new Date(resultAtividades[i].data);
 
-    modelDisciplina.obterDisciplina(id, (error, resultDisciplina) => {
-        modelAluno.obterAluno(matricula, (error, resultAluno) => {
-            modelAtividades.obterAtividades(id, (error, resultAtividades) => {
-                for(var i = 0; i < resultAtividades.length; i++){
-                    const data= new Date(resultAtividades[i].data);
-
-                    let day;
+                        let day;
         
-                    if(data.getDate() < 10){
-                        day = "0" + data.getDate();
-                    }else{
-                        day = data.getDate().toString();
+                        if(data.getDate() < 10){
+                            day = "0" + data.getDate();
+                        }else{
+                            day = data.getDate().toString();
+                        }
+                
+                        let month;
+                
+                        if(data.getMonth() < 10){
+                            month = "0" + (data.getMonth() + 1);
+                        }else{
+                            month = (data.getMonth() + 1).toString();
+                        }
+                
+                        resultAtividades[i].data = day + "/" + month  + "/" + data.getFullYear().toString();         
                     }
-            
-                    let month;
-            
-                    if(data.getMonth() < 10){
-                        month = "0" + (data.getMonth() + 1);
-                    }else{
-                        month = (data.getMonth() + 1).toString();
+
+
+                    const notas = resultNotas;
+                    const disciplina = resultDisciplina;
+
+                    let media = 0;
+                    let somaNota = 0;
+                    let pesoTotal = 0;
+                    let notaFut = 0;
+                    if(notas.length == disciplina[0].quantNotas){
+                        for(var i = 0; i < notas.length; i++){
+                            somaNota = somaNota + (notas[i].nota * notas[i].peso);
+                            pesoTotal = pesoTotal + notas[i].peso;
+                        }
+
+                        media = somaNota / pesoTotal;
+                        media = media.toFixed(2);
+
+                    } else if(notas.length == disciplina[0].quantNotas - 1){
+                        let maiorPeso = 1;
+                        for(var i = 0; i < notas.length; i++){
+                            if(notas[i].peso > maiorPeso){
+                                maiorPeso = notas[i].peso;
+                            }
+                            somaNota = somaNota + (notas[i].nota * notas[i].peso);
+                            pesoTotal = pesoTotal + notas[i].peso;
+                        }
+
+                        let pesoFut = maiorPeso + 1;
+                        pesoTotal = pesoTotal + pesoFut;
+                        notaFut = ((7 * pesoTotal) - somaNota) / pesoFut;
+                        notaFut = notaFut.toFixed(2);
+                        console.log(somaNota);
+                        console.log(pesoTotal);
+                        
                     }
-            
-                    resultAtividades[i].data = day + "/" + month  + "/" + data.getFullYear().toString();
-                   
-                }
-                modelNotas.obterNotas(id, (error, resultNotas) => {           
-                    res.render("subject/infoSubject", {disciplina: resultDisciplina, aluno: resultAluno, notas: resultNotas, atividades: resultAtividades, pass: pass, key: key});
+                    res.render("subject/infoSubject", {disciplina: resultDisciplina, aluno: resultAluno, notas: resultNotas, atividades: resultAtividades, pass: pass, key: key, media: media, notaFut: notaFut});
                 });
             });
         });
-    });
-    
+    });   
 }
 
 module.exports.deletarDisciplina = (app, req, res) => {
@@ -189,3 +222,8 @@ module.exports.alterSave = (app, req, res) => {
         res.redirect("/studentPage?key=" + key + "&matricula=" + req.query.aluno + "&password=" + pass);
     });
 }
+
+module.exports.novaNota = (app, req, res) => {
+
+}
+

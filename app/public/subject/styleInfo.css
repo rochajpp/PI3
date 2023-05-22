@@ -112,17 +112,20 @@ body {
   .activeBody .addAtividade{
     display: block;
   }
-  .addAtividade{
+  .activeBodyNota .addNota{
+    display: block;
+  }
+  .addAtividade, .addNota{
     display: none;
   }
   .main{
     transition: 0.5s;
   }
-  .active{
+  .active, .activeNota{
     filter: blur(10px);
   }
   
-  .addAtividade{
+  .addAtividade, .addNota{
     position: absolute;
     left: 50%;
     top: 50%;

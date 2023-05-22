@@ -5,3 +5,9 @@ function addPop(){
     body.classList.toggle("activeBody");
 }
 
+function addPopNota(){
+    const main = document.querySelector(".main");
+    const body = document.querySelector("body");
+    main.classList.toggle("activeNota");
+    body.classList.toggle("activeBodyNota");
+}

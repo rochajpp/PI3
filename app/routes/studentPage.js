@@ -32,4 +32,8 @@ module.exports = (app) => {
     app.get("/removerAtividade", (req, res) => {
         app.app.controllers.atividade.rmAtividade(app, req, res);
     });
+
+    app.post("/salvarNota", (req, res) => {
+        app.app.controllers.nota.salvarNota(app, req, res);
+    })
 }
