@@ -10,11 +10,11 @@ module.exports.saveStudent = (app, req, res) => {
 
     model.validarEmail(novoAluno, (error, result) => {
         if(result.length > 0){
-            console.log('Email já cadastrado');
+            res.send('Email já cadastrado');
         }else{
             model.salvarAluno(novoAluno, (error, result) => {
                 console.log('Usuário registrado com sucesso');
-                res.render('admin/register/finalRegister', {matricula: novoAluno.matricula});
+                res.render('register/finalRegister', {matricula: novoAluno.matricula});
             });
         }
     });
